@@ -1,3 +1,5 @@
+package locale;
+
 import java.text.DateFormat;
 import java.text.MessageFormat;
 import java.text.SimpleDateFormat;

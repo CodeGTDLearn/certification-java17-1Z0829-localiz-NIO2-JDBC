@@ -1,3 +1,5 @@
+package locale;
+
 import java.util.Locale;
 
 public class LocaleObjects {

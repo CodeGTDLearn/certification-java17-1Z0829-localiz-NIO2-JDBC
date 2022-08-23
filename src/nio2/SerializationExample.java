@@ -1,16 +1,18 @@
+package nio2;
+
 import java.io.*;
 
 class Pet implements Serializable {
   private String name;     private String type; private String type2 = "xxxx";
 
-  Pet() { System.out.println("1) Pet NO-ARGS-constructor");     }
+  Pet() { System.out.println("1) nio2.Pet NO-ARGS-constructor");     }
 
   Pet(String name, String type) {
     this.name = name;
     this.type = type;
-    System.out.println("2) Pet ARGS-constructor");        }
+    System.out.println("2) nio2.Pet ARGS-constructor");        }
 
-  public String toString() {return "Pet: " + name + "|" + type;}   }
+  public String toString() {return "nio2.Pet: " + name + "|" + type;}   }
 
 public class SerializationExample {
   public static void main(String[] args) throws IOException, ClassNotFoundException {

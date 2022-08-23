@@ -1,3 +1,5 @@
+package jdbc;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -94,7 +96,7 @@ class Person {
 
   public String toString() {
 
-    return "Person{" +
+    return "jdbc.Person{" +
          "id=" + id +
          ", name='" + name + '\'' +
          ", age=" + age +

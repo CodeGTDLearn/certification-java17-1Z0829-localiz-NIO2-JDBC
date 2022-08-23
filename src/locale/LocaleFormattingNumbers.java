@@ -1,3 +1,5 @@
+package locale;
+
 import java.text.DecimalFormat;
 import java.text.MessageFormat;
 import java.text.NumberFormat;
