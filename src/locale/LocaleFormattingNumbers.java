@@ -9,27 +9,21 @@ import java.util.Locale;
 public class LocaleFormattingNumbers {
 
   public static void main(String[] args) throws ParseException {
-
-    //    parseNumbers(Locale.GERMANY);
+        formatNumbers(Locale.GERMANY);
     testCustomNumberFormats(Locale.GERMANY);
   }
 
-  public static void parseNumbers(Locale local) throws ParseException {
-
+  public static void formatNumbers(Locale local) throws ParseException {
     double value = 10.55;
 
-    String defaultDecimal = NumberFormat.getInstance()
-                                        .format(value);
-
-    System.out.println(
+    System.out.println("\n"+
          MessageFormat
-              .format("{0}({1}) -> parse -> {2}({3})",
+              .format("{0}({1}) -> format -> {2}({3})",
                       Locale.getDefault(),
-                      defaultDecimal,
+                      NumberFormat.getCurrencyInstance().format(value),
                       local,
-                      NumberFormat.getInstance(local)
-                                  .parse(defaultDecimal)
-                     ));
+                      NumberFormat.getCurrencyInstance(local).format(value)
+              ));
   }
 
   // Formatting Numbers using patterns
@@ -54,7 +48,7 @@ public class LocaleFormattingNumbers {
     //                      new DecimalFormat("##.00").format(value)));
 
 
-    System.out.println(
+    System.out.println("\n"+
          MessageFormat.format("{0}({1}) : {2, number, percent} ",
                               "{percent}  ",
                               local,
