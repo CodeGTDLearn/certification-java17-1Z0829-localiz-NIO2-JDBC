@@ -17,7 +17,7 @@ public class FileIOExample {
         numbersList = r.ints(25, 1, 100)
                        .mapToObj((s) -> String.valueOf(s))
                        .reduce("", (string, element) -> String.join(" ", string, element));
-
+        System.out.println(numbersList);
         stream.write(numbersList + "\n");
       }
     }
@@ -76,13 +76,11 @@ public class FileIOExample {
   public static void main(String[] args) throws IOException {
 
     writeRandomNumbersToFile("characterData.txt");
-    List<Integer> randomList =
-         readRandomNumbersFromFile("characterData.txt");
-    writeDataStream("binaryIOData.bin", randomList);
-    List<Integer> dataList =
-         readDataStream("binaryIOData.bin");
-    System.out.println("Are lists equal? " + randomList.equals(dataList));
+//    List<Integer> randomList =
+//         readRandomNumbersFromFile("characterData.txt");
+//    writeDataStream("binaryIOData.bin", randomList);
+//    List<Integer> dataList =
+//         readDataStream("binaryIOData.bin");
+//    System.out.println("Are lists equal? " + randomList.equals(dataList));
   }
-
-
 }

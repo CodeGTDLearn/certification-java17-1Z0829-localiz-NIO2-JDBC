@@ -12,11 +12,20 @@ import java.time.format.DateTimeFormatter;
 
 public class PathMethods {
   public static void main(String[] args) {
+
     //            testNormalize();
     //            testRelativize();
     //    testResolve();
     //    testResolveSibling();
     //    showData("caracterData.txt");
+        checkPath();
+  }
+
+  public static void checkPath() {
+
+    final Path path = Paths.get("c:\\", "test.txt");
+    System.out.println(path);
+
   }
 
   // Print Information about a Path object using path methods

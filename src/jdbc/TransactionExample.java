@@ -1,19 +1,21 @@
 package jdbc;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.sql.*;
+import java.util.Properties;
 
 public class TransactionExample {
-  public static Connection connect = null;
-
-  public static void main(String[] args) {
+  static String mySqlUrl = "jdbc:mysql://localhost:3306/testone";
+  static Connection connect;
+  public static void main(String[] args) throws SQLException {
+     connect = getConnection(mySqlUrl);
 
     boolean success = false;
     try {
-      CreateConnection con = new CreateConnection();
-      connect = con.getConnection();
+      Connection con = getConnection(mySqlUrl);
+      connect = getConnection(mySqlUrl);
 
       connect.setAutoCommit(false);
 
@@ -71,5 +73,40 @@ public class TransactionExample {
       success = false;
       ex.printStackTrace();}
     return success;
+  }
+  public static Connection getConnection(String connection) throws SQLException {
+
+    Connection c;
+
+    // Prior to JDBC 4.0 (Java 6) classloader uses Class.forName
+    // It does nothing here (we are using Java 11)
+    try {
+      Class.forName("org.apache.derby.iapi.jdbc.InternalDriver");
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+
+    if (connection.contains("mysql")) {
+      String username = "newuser";
+      String password = "new_user_2020";
+
+      Properties properties = new Properties();
+      properties.setProperty("user", username);
+      properties.setProperty("password", password);
+
+      c = DriverManager.getConnection(connection, properties);
+      c = DriverManager.getConnection(connection, username, password);
+    } else {
+      if (connection.contains("sqlite")) {
+        Path p = Paths.get(connection.split(":")[2]);
+        try {
+          Files.createDirectories(p.getParent());
+        } catch (Exception e) {
+          e.printStackTrace();
+        }
+      }
+      c = DriverManager.getConnection(connection);
+    }
+    return c;
   }
 } 
